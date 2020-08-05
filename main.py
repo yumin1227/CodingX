@@ -404,6 +404,8 @@ def main():
 		GAMECLOCK.tick(FPS)
 
 	##################################################################################################################################################################################
+def  SetGameMap copy():
+	[None]*(h_box*2 + (v_box - 2)*2)
 
 
 def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎樣(h_box、v_box為格數)
@@ -415,16 +417,25 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 	map_width = map_right - map_left
 	map_height = map_bottom - map_top	
 	map_surface = pygame.Surface((map_width,map_height), pygame.SRCALPHA) 			#建立畫布
-	print(map_width,map_height)	
 	start_left = map_width - BOXWIDTH									  			#一堆奇怪的算式計算長寬
 	start_height = map_height - BOXHEIGHT
 	end_left = 0
 	end_height = 0
-	game_map = [None]*(h_box*2 + (v_box - 2)*2)
-	building_pos = [None]*(h_box*2 + (v_box - 2)*2)
-	arrow_pos = [None]*(h_box*2 + (v_box - 2)*2)
-	arrow_dir = [None]*(h_box*2 + (v_box - 2)*2)
 
+
+	game_map = def  SetGameMap copy()
+	building_pos = def  SetGameMap copy()
+	arrow_pos = def  SetGameMap copy()
+	arrow_dir = def  SetGameMap copy()
+def Draw  boxes copy():
+	text_rect = text.get_rect()														#獲得文字的矩形大小
+		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)				#定義文字方塊的中心點
+		map_surface.blit(text,text_rect)
+
+	text_rect = text.get_rect()														#獲得文字的矩形大小
+	text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)				#定義文字方塊的中心點
+	map_surface.blit(text,text_rect)									
+		
 	# Draw horizontal boxes on map   #繪製水平方向的格子
 	for i in range(h_box):
 		#下面那排格子
@@ -432,9 +443,7 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 		rect_top = start_height
 		pygame.draw.rect(map_surface,BLACK,[rect_left,rect_top,BOXWIDTH,BOXHEIGHT],3)   #畫製矩形(地圖每一格)→(畫布,顏色,[左座標,上座標,寬度,高度],線寬)
 		text = font_obj.render(str(i),True,WHITE,(0,0,0,0))								#文字(每一格的編號)→(文字,平滑值,文字顏色,背景顏色)
-		text_rect = text.get_rect()														#獲得文字的矩形大小
-		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)				#定義文字方塊的中心點
-		map_surface.blit(text,text_rect)												#用blit將文字繪製上去
+		Draw  boxes copy()												#用blit將文字繪製上去
 		game_map[i] = [rect_left, rect_top]												#將每一個格子的左座標，上座標存起來
 		building_pos[i] = [rect_left + map_left, rect_top + map_top + BOXHEIGHT]		#將每一個建築物的左座標，上座標存起來
 		arrow_pos[i] = [rect_left + map_left, rect_top + map_top + BOXHEIGHT + BLANKHEIGHT]   #將每一個箭頭的左座標，上座標存起來
@@ -444,9 +453,7 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 		rect_top = end_height
 		pygame.draw.rect(map_surface,BLACK,[rect_left,rect_top,BOXWIDTH,BOXHEIGHT],3)
 		text = font_obj.render(str(i + h_box + v_box - 2),True,WHITE,(0,0,0,0))
-		text_rect = text.get_rect()
-		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)
-		map_surface.blit(text,text_rect)
+		Draw  boxes copy()
 		game_map[i + h_box + v_box - 2] = [rect_left,rect_top]
 		building_pos[i + h_box + v_box - 2] = [rect_left + map_left, rect_top + map_top - BUILDINGHEIGHT]
 		arrow_pos[i + h_box + v_box - 2] = [rect_left + map_left, rect_top + map_top - ARROWHEIGHT - BLANKHEIGHT]
@@ -459,9 +466,7 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 		rect_top = start_height - i*BOXHEIGHT
 		pygame.draw.rect(map_surface,BLACK,[rect_left,rect_top,BOXWIDTH,BOXHEIGHT],3)
 		text = font_obj.render(str(h_box*2 + (v_box - 2)*2 - i),True,WHITE,(0,0,0,0))
-		text_rect = text.get_rect()
-		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)
-		map_surface.blit(text,text_rect)
+		Draw  boxes copy()
 		game_map[h_box*2 + (v_box - 2)*2 - i] = [rect_left,rect_top]
 		building_pos[h_box*2 + (v_box - 2)*2 - i] = [rect_left + map_left + BOXWIDTH, rect_top + map_top]
 		arrow_pos[h_box*2 + (v_box - 2)*2 - i] = [rect_left + map_left + BOXWIDTH + BLANKWIDTH, rect_top + map_top]
@@ -471,9 +476,7 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 		rect_top = start_height - i*BOXHEIGHT
 		pygame.draw.rect(map_surface,BLACK,[rect_left,rect_top,BOXWIDTH,BOXHEIGHT],3)
 		text = font_obj.render(str(h_box + i - 1),True,WHITE,(0,0,0,0))
-		text_rect = text.get_rect()
-		text_rect.center = (rect_left + BOXWIDTH/2,rect_top + BOXHEIGHT/2)
-		map_surface.blit(text,text_rect)
+		Draw  boxes copy()
 		game_map[h_box + i - 1] = [rect_left,rect_top]
 		building_pos[h_box + i - 1] = [rect_left + map_left - BUILDINGWIDTH, rect_top + map_top]
 		arrow_pos[h_box + i - 1] = [rect_left + map_left - ARROWHEIGHT - BLANKWIDTH, rect_top + map_top]
@@ -503,21 +506,29 @@ def DrawBuildings(location_list,building_pos,building_offset,arrow_dir):	#從Loc
 			pos_y = building_pos[location.num][1] + building_offset[i][DIRECT[arrow_dir[location.num]]][1]
 			window.blit(UI_IMAGES['building' + str(location.owner)],(pos_x,pos_y))
 
+def DrawPlayerData copy ():
+	text_rect = text.get_rect()
+	window.blit(text,text_rect)
+	data_offset += 50
+
+
 
 def DrawPlayerData(players,name):								#利用game_class中來計算player的金錢有多少，並且在左上角將資訊繪製出來
 	data_offset = 50
+
+
 	for player in players:
 		text = font_obj.render('%5s%s：%d'% (name[player.player_num-1],'\'s cans',player.money),True,WHITE,(0,0,0,0))
-		text_rect = text.get_rect()
+		DrawPlayerData copy ()
 		text_rect.center = (100,data_offset)
-		window.blit(text,text_rect)
-		data_offset += 50
+		
 	data_offset = 50
+
 	for player in players:
 		text = font_obj.render('%5s%s：%d'% (name[player.player_num-1],'\'s asset',player.asset),True,WHITE,(0,0,0,0))
-		text_rect = text.get_rect()
+		DrawPlayerData copy ()
 		text_rect.center = (1150,data_offset)
-		window.blit(text,text_rect)
+		
 		data_offset += 50
 	return
 
