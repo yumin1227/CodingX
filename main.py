@@ -266,18 +266,7 @@ def main():
 					location = location_list[player_cur.pos]						#看玩家現在在的那一格是哪裡存成location
 					attack_flag=0													#拿來判斷玩家是因為被攻擊而走到醫院(1)，或是自己丟骰子走到醫院去(0)，這兩者都要凍結玩家步數
 					if location.func == FUNCTION['attack']:							#如果玩家被攻擊的話，要重新繪製視窗(重複168行的東西)
-						# Redraw game window
-						RecordData(players,game_record,location_list)
-						DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
-						pygame.display.update()
-
-						player_cur.Transport(HOSPITAL_POS)							#將玩家的位置移到醫院那一格
-						player_cur.freeze_turn = 2									#讓玩家的凍結格數為2，並且印出文字視窗
-						attack_flag=1
-						pygame.time.delay(60) 
-						hospital.play()
-						CreateMessageBox(name[player_cur.player_num-1] + ' is attacked! Go to Hospital!','Go to Hospital!',MESSAGE_BOX_TYPE['OK'])
-						GAMECLOCK.tick(2)											#2豪秒內更新視窗
+						attact_func()
 
 					elif location.func == FUNCTION['hospital']:						#如果走到醫院那格的話，要凍結步數(freeze_turn)
 						if not attack_flag:
@@ -292,13 +281,7 @@ def main():
 							CreateMessageBox(name[player_cur.player_num-1]+' take cuties go to camping. Get 2000 cans.','Go Camping',MESSAGE_BOX_TYPE['OK']		)					
 
 					elif location.func == FUNCTION['fortune']:						#若走到命運格子，要重新繪製地圖
-						RecordData(players,game_record,location_list)				
-						DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
-						pygame.display.update()
-						
-						cans=['4000','5000','6000','700','1000','2000','3000','9000','3000']
-						i=random.randint(0,8)
-						Lose_Get=random.randint(0,2)
+						fortune_func()
 
 						if Lose_Get == 1 or Lose_Get == 2:							#命運是不好的(lose)	
 							story=random.randint(1,6)
@@ -642,4 +625,28 @@ if __name__ == '__main__':
 	msg=easygui.msgbox(msg='歡迎來到寵物們的世界，在這張地圖裡，人人都是貓奴、狗奴，可愛的貓貓和狗狗們，在這個世界中都有屬於自己的領地。',title='寵物當家')
 	msg=easygui.msgbox(msg='當你走進他們的領地，可以送上罐頭食物，讓浪浪跟你回家，當你想讓整個家更加完整，可以多添貓寶寶或狗寶寶，一旦毛小孩認定了一個主人，對於外來者的侵略，小心出於防備而被咬，失去身上的罐頭，讓浪浪有個家吧 ! 也要小心突發的攻擊喔！',title='寵物當家')
 	main()
+
+
+def attact_func():
+	# Redraw game window
+	RecordData(players,game_record,location_list)
+	DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
+	pygame.display.update()
+	player_cur.Transport(HOSPITAL_POS)							#將玩家的位置移到醫院那一格
+	player_cur.freeze_turn = 2									#讓玩家的凍結格數為2，並且印出文字視窗
+	attack_flag=1
+	pygame.time.delay(60) 
+	hospital.play()
+	CreateMessageBox(name[player_cur.player_num-1] + ' is attacked! Go to Hospital!','Go to Hospital!',MESSAGE_BOX_TYPE['OK'])
+	GAMECLOCK.tick(2)											#2豪秒內更新視窗
+
+def fortune_func():
+	RecordData(players,game_record,location_list)				
+	DrawAll(blank_pos,map_pos,map_surface,arrow_pos,arrow_dir,building_pos,building_offset,step,ui_list,location_list,players,offset,name)
+	pygame.display.update()
+						
+	cans=['4000','5000','6000','700','1000','2000','3000','9000','3000']
+	i=random.randint(0,8)
+	Lose_Get=random.randint(0,2)
+
 	
