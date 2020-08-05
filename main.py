@@ -451,7 +451,6 @@ def SetGameMap(h_box,v_box):   		                  								#定義地圖長怎�
 	map_width = map_right - map_left
 	map_height = map_bottom - map_top	
 	map_surface = pygame.Surface((map_width,map_height), pygame.SRCALPHA) 			#建立畫布
-	print(map_width,map_height)	
 	start_left = map_width - BOXWIDTH									  			#一堆奇怪的算式計算長寬
 	start_height = map_height - BOXHEIGHT
 	end_left = 0
