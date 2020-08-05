@@ -63,35 +63,16 @@ WHITE = (255,255,255)
 BLACK = (0,0,0)
 
 # Game Images 			#匯入地圖的圖片
-IMAGES = {
-	'start' : pygame.transform.scale(pygame.image.load('images/start.png'),(BOXWIDTH,BOXHEIGHT)),
-	'forest1' : pygame.transform.scale(pygame.image.load('images/forest1.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'hospital' : pygame.transform.scale(pygame.image.load('images/hospital1.png'),(BOXWIDTH,BOXHEIGHT)),
-	'camping' : pygame.transform.scale(pygame.image.load('images/camping.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'dog1' : pygame.transform.scale(pygame.image.load('images/dog1.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'dog2' : pygame.transform.scale(pygame.image.load('images/dog2.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'dog3': pygame.transform.scale(pygame.image.load('images/dog3.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'dog4' : pygame.transform.scale(pygame.image.load('images/dog4.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'dog5': pygame.transform.scale(pygame.image.load('images/dog5.jpg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'dog6': pygame.transform.scale(pygame.image.load('images/dog6.jpeg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'dog7': pygame.transform.scale(pygame.image.load('images/dog7.jpeg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'dog8': pygame.transform.scale(pygame.image.load('images/dog8.jpeg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'cat1' : pygame.transform.scale(pygame.image.load('images/cat1.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'cat2' : pygame.transform.scale(pygame.image.load('images/cat2.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'cat3': pygame.transform.scale(pygame.image.load('images/cat3.jpg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'cat4': pygame.transform.scale(pygame.image.load('images/cat4.jpg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'cat5': pygame.transform.scale(pygame.image.load('images/cat5.jpg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'cat6': pygame.transform.scale(pygame.image.load('images/cat6.jpg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'cat7': pygame.transform.scale(pygame.image.load('images/cat7.jpeg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'cat8': pygame.transform.scale(pygame.image.load('images/cat8.jpeg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'cat9': pygame.transform.scale(pygame.image.load('images/cat9.jpg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'cat10': pygame.transform.scale(pygame.image.load('images/cat10.jpg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'angry1': pygame.transform.scale(pygame.image.load('images/angry1.jpg'),(BOXWIDTH,BOXHEIGHT)) ,
-	'angry2': pygame.transform.scale(pygame.image.load('images/angry2.jpg'),(BOXWIDTH,BOXHEIGHT)), 
-	'background':pygame.transform.scale(pygame.image.load('images/BG-01.jpg'),(930,570)),
-	'fortune1':pygame.transform.scale(pygame.image.load('images/fortune_1.jpg'),(BOXWIDTH,BOXHEIGHT)),
-	'fortune2':pygame.transform.scale(pygame.image.load('images/fortune_2.jpg'),(BOXWIDTH,BOXHEIGHT)),
-}
+
+images_name=['start','forest1','hospital','camping','dog1','dog2','dog3','dog4','dog5','dog6','dog7','dog8','cat1','cat2','cat3','cat4','cat5',
+'cat6','cat7','cat8','cat9','cat10','angry1','angry2','fortune1','fortune2']
+images_url=['images/start.png','images/forest1.jpg','images/hospital1.png','images/camping.jpg','images/dog1.jpg','images/dog2.jpg',
+'images/dog3.jpg','images/dog4.jpg','images/dog5.jpg','images/dog6.jpeg','images/dog7.jpeg','images/dog8.jpeg','images/cat1.jpg',
+'images/cat2.jpg','images/cat3.jpg','images/cat4.jpg','images/cat5.jpg','images/cat6.jpg','images/cat7.jpeg','images/cat8.jpeg',
+'images/cat9.jpg','images/cat10.jpg','images/angry1.jpg','images/angry2.jpg','images/fortune_1.jpg','images/fortune_2.jpg']
+for i in range(len(images_name)):
+	IMAGES[images_name[i]]=pygame.transform.scale(pygame.image.load(images_url[i]),(BOXWIDTH,BOXHEIGHT))
+IMAGES['background']=pygame.transform.scale(pygame.image.load('images/BG-01.jpg'),(930,570))
 
 UI_IMAGES = { 			#匯入根據使用者操作而會改變的圖片
 	'go_btn_down' : pygame.transform.scale(pygame.image.load('images/go_btn_down.png'),(BTNWIDTH,BTNHEIGHT)),
