@@ -63,7 +63,7 @@ WHITE = (255,255,255)
 BLACK = (0,0,0)
 
 # Game Images 			#匯入地圖的圖片
-
+IMAGES={}
 images_name=['start','forest1','hospital','camping','dog1','dog2','dog3','dog4','dog5','dog6','dog7','dog8','cat1','cat2','cat3','cat4','cat5',
 'cat6','cat7','cat8','cat9','cat10','angry1','angry2','fortune1','fortune2']
 images_url=['images/start.png','images/forest1.jpg','images/hospital1.png','images/camping.jpg','images/dog1.jpg','images/dog2.jpg',
@@ -74,31 +74,20 @@ for i in range(len(images_name)):
 	IMAGES[images_name[i]]=pygame.transform.scale(pygame.image.load(images_url[i]),(BOXWIDTH,BOXHEIGHT))
 IMAGES['background']=pygame.transform.scale(pygame.image.load('images/BG-01.jpg'),(930,570))
 
-UI_IMAGES = { 			#匯入根據使用者操作而會改變的圖片
-	'go_btn_down' : pygame.transform.scale(pygame.image.load('images/go_btn_down.png'),(BTNWIDTH,BTNHEIGHT)),
-	'go_btn_up' : pygame.transform.scale(pygame.image.load('images/go_btn_up.png'),(BTNWIDTH,BTNHEIGHT)),
-	'arrow_up1' : pygame.transform.scale(pygame.image.load('images/person-02-02.png'),(ARROWWIDTH,ARROWHEIGHT)),
-	'arrow_down1' : pygame.transform.scale(pygame.image.load('images/person-02-02.png'),(ARROWWIDTH,ARROWHEIGHT)),
-	'arrow_left1' : pygame.transform.scale(pygame.image.load('images/person-03-02.png'),(ARROWHEIGHT,ARROWWIDTH)),
-	'arrow_right1' : pygame.transform.scale(pygame.image.load('images/person-03-02.png'),(ARROWHEIGHT,ARROWWIDTH)),
-	'arrow_up2' : pygame.transform.scale(pygame.image.load('images/person-02-04.png'),(ARROWWIDTH,ARROWHEIGHT)),
-	'arrow_down2' : pygame.transform.scale(pygame.image.load('images/person-02-04.png'),(ARROWWIDTH,ARROWHEIGHT)),
-	'arrow_left2' : pygame.transform.scale(pygame.image.load('images/person-03-04.png'),(ARROWHEIGHT,ARROWWIDTH)),
-	'arrow_right2' : pygame.transform.scale(pygame.image.load('images/person-03-04.png'),(ARROWHEIGHT,ARROWWIDTH)),
-	'arrow_up3' : pygame.transform.scale(pygame.image.load('images/person-02-05.png'),(ARROWWIDTH,ARROWHEIGHT)),
-	'arrow_down3' : pygame.transform.scale(pygame.image.load('images/person-02-05.png'),(ARROWWIDTH,ARROWHEIGHT)),
-	'arrow_left3' : pygame.transform.scale(pygame.image.load('images/person-03-05.png'),(ARROWHEIGHT,ARROWWIDTH)),
-	'arrow_right3' : pygame.transform.scale(pygame.image.load('images/person-03-05.png'),(ARROWHEIGHT,ARROWWIDTH)),
-	'dice1' : pygame.transform.scale(pygame.image.load('images/dice1.jpeg'),(DICEWIDTH,DICEHEIGHT)),
-	'dice2' : pygame.transform.scale(pygame.image.load('images/dice2.jpeg'),(DICEWIDTH,DICEHEIGHT)),
-	'dice3' : pygame.transform.scale(pygame.image.load('images/dice3.jpeg'),(DICEWIDTH,DICEHEIGHT)),
-	'dice4' : pygame.transform.scale(pygame.image.load('images/dice4.jpeg'),(DICEWIDTH,DICEHEIGHT)),
-	'dice5' : pygame.transform.scale(pygame.image.load('images/dice5.jpeg'),(DICEWIDTH,DICEHEIGHT)),
-	'dice6' : pygame.transform.scale(pygame.image.load('images/dice6.jpeg'),(DICEWIDTH,DICEHEIGHT)),
-	'building1' : pygame.transform.scale(pygame.image.load('images/dog-03.png'),(BUILDINGWIDTH,BUILDINGHEIGHT)),
-	'building2' : pygame.transform.scale(pygame.image.load('images/cat02-03.png'),(BUILDINGWIDTH,BUILDINGHEIGHT)),
-	'building3' : pygame.transform.scale(pygame.image.load('images/cat02-04.png'),(BUILDINGWIDTH,BUILDINGHEIGHT))
-}
+UI_IMAGES={}
+ui_images_name=['go_btn_down','go_btn_up','arrow_up1','arrow_down1','arrow_left1','arrow_right1','arrow_up2','arrow_down2','arrow_left2',
+'arrow_right2','arrow_up3','arrow_down3','arrow_left3','arrow_right3','dice1','dice2','dice3','dice4','dice5','dice6','building1',
+'building2','building3']
+ui_images_url=['images/go_btn_down.png','images/go_btn_up.png','images/person-02-02.png','images/person-02-02.png','images/person-02-02.png',
+'images/person-03-02.png','images/person-03-02.png','images/person-02-04.png','images/person-02-04.png','images/person-03-04.png','images/person-03-04.png',
+'images/person-02-05.png','images/person-02-05.png','images/person-03-05.png','images/person-03-05.png','images/dice1.jpeg','images/dice2.jpeg',
+'images/dice3.jpeg','images/dice4.jpeg','images/dice5.jpeg','images/dice6.jpeg','images/dog-03.png','images/cat02-03.png','images/cat02-04.png']
+ui_size=[(BTNWIDTH,BTNHEIGHT),(BTNWIDTH,BTNHEIGHT),(ARROWWIDTH,ARROWHEIGHT),(ARROWWIDTH,ARROWHEIGHT),(ARROWHEIGHT,ARROWWIDTH),(ARROWHEIGHT,ARROWWIDTH),
+(ARROWWIDTH,ARROWHEIGHT),(ARROWWIDTH,ARROWHEIGHT),(ARROWHEIGHT,ARROWWIDTH),(ARROWHEIGHT,ARROWWIDTH),(ARROWWIDTH,ARROWHEIGHT),(ARROWWIDTH,ARROWHEIGHT),
+(ARROWHEIGHT,ARROWWIDTH),(ARROWHEIGHT,ARROWWIDTH),(DICEWIDTH,DICEHEIGHT),(DICEWIDTH,DICEHEIGHT),(DICEWIDTH,DICEHEIGHT),(DICEWIDTH,DICEHEIGHT),(DICEWIDTH,DICEHEIGHT),
+(DICEWIDTH,DICEHEIGHT),(BUILDINGWIDTH,BUILDINGHEIGHT),(BUILDINGWIDTH,BUILDINGHEIGHT),(BUILDINGWIDTH,BUILDINGHEIGHT)]
+for i in range(len(ui_images_name)):
+	UI_IMAGES[ui_images_name[i]]=pygame.transform.scale(pygame.image.load(ui_images_url[i]),ui_size[i])
 
 FUNCTION = {			#每一格的功能對應到的數字
 	'start' : 0,
