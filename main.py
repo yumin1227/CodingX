@@ -136,31 +136,17 @@ def main():
 	inp=easygui.enterbox('請輸入三位玩家的姓名(英文)\n          Ex: AAA BBB CCC','Name')					#請玩家輸入姓名
 	name=[str(i) for i in inp.split()]																	#將玩家的姓名存到串列中(name)
 
-	location_list = []																					#將地點的照片及資訊加到串列當中→(第幾格,圖片,對應到game_map中的左座標及上座標,該格的功用,花費,加蓋花費,其他人過路費)
-	location_list.append(Location(0,IMAGES['start'],game_map[0],FUNCTION['start'],-1,-1,-1))	
-	location_list.append(Location(1,IMAGES['cat1'],game_map[1],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(2,IMAGES['cat3'],game_map[2],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(3,IMAGES['dog1'],game_map[3],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(4,IMAGES['fortune2'],game_map[4],FUNCTION['fortune'],3000,1500,1000))
-	location_list.append(Location(5,IMAGES['cat2'],game_map[5],FUNCTION['estate'],1500,900,800))
-	location_list.append(Location(6,IMAGES['cat5'],game_map[6],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(7,IMAGES['dog2'],game_map[7],FUNCTION['estate'],1500,900,800))
-	location_list.append(Location(HOSPITAL_POS,IMAGES['hospital'],game_map[HOSPITAL_POS],FUNCTION['hospital'],-1,-1,-1)) 
-	location_list.append(Location(9,IMAGES['dog3'],game_map[9],FUNCTION['estate'],1500,900,800))
-	location_list.append(Location(10,IMAGES['cat4'],game_map[10],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(11,IMAGES['dog4'],game_map[11],FUNCTION['estate'],1500,900,800))
-	location_list.append(Location(12,IMAGES['forest1'],game_map[12],FUNCTION['attack'],-1,-1,-1))
-	location_list.append(Location(13,IMAGES['cat6'],game_map[13],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(14,IMAGES['dog5'],game_map[14],FUNCTION['estate'],1500,900,800))
-	location_list.append(Location(15,IMAGES['dog6'],game_map[15],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(16,IMAGES['cat7'],game_map[16],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(17,IMAGES['dog8'],game_map[17],FUNCTION['estate'],1500,900,800))
-	location_list.append(Location(18,IMAGES['fortune1'],game_map[18],FUNCTION['fortune'],1500,900,800))
-	location_list.append(Location(19,IMAGES['angry1'],game_map[19],FUNCTION['estate'],9000,5000,4000))
-	location_list.append(Location(20,IMAGES['camping'],game_map[20],FUNCTION['cute'],-1,-1,-1))
-	location_list.append(Location(21,IMAGES['angry2'],game_map[21],FUNCTION['estate'],9000,5000,4000))
-	location_list.append(Location(22,IMAGES['cat10'],game_map[22],FUNCTION['estate'],3000,1500,1000))
-	location_list.append(Location(23,IMAGES['dog7'],game_map[23],FUNCTION['estate'],1500,900,800))
+	location_image_name=['start','cat1','cat3','dog1','fortune2','cat2','cat5','dog2','hospital','dog3','cat4','dog4','forest1','cat6','dog5','cat7','dog8','fortune1','angry1','angry2','cat10','dog7']
+	function_name=['start','estate','estate','estate','fortune','estate','estate','estate','hospital','estate','estate','estate','attack','estate','estate','estate','estate','estate','fortune','estate','cute','estate','estate','estate']
+	money=[[-1,-1,-1],[3000,1500,1000],[3000,1500,1000],[3000,1500,1000],[3000,1500,1000],[1500,900,800],[3000,1500,1000],[1500,900,800],[-1,-1,-1],[1500,900,800],[3000,1500,1000],[1500,900,800],[-1,-1,-1],[3000,1500,1000],[1500,900,800],[3000,1500,1000],[3000,1500,1000],[1500,900,800],[1500,900,800],[9000,5000,4000],[-1,-1,-1],[9000,5000,4000],[3000,1500,1000],[1500,900,800]]
+	location_list = []
+	for i in range(len(location_image_name)):        #將地點的照片及資訊加到串列當中→(第幾格,圖片,對應到game_map中的左座標及上座標,該格的功用,花費,加蓋花費,其他人過路費)
+    	if i==8:
+    		location_list.append(Location(HOSPITAL_POS,IMAGES['hospital'],game_map[HOSPITAL_POS],FUNCTION['hospital'],-1,-1,-1))
+		else:
+			location_list.append(Location([i],IMAGES[location_image_name[i]],game_map[i],FUNCTION[function[i]],money[i][0],money[i][1],money[i][2]))
+
+
 			
 	for location in location_list:													#把圖片放到地圖上(原本SetGameMap當中return的map_surface只有地圖的空格子+文字)
 		location.render(map_surface)												# map_surface最後為一個完整的地圖
